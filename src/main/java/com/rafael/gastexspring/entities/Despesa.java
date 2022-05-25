@@ -4,10 +4,18 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Despesa implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String descricao;
 	private Double valor;
 	private Date data;
@@ -27,7 +35,7 @@ public class Despesa implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Despesa(Integer id, String descricao, Double valor, Date data, Categoria categoria, Usuario usuario) {
+	public Despesa(Long id, String descricao, Double valor, Date data, Categoria categoria, Usuario usuario) {
 		this.id = id;
 		this.descricao = descricao;
 		this.valor = valor;
@@ -36,11 +44,11 @@ public class Despesa implements Serializable{
 		this.usuario=usuario;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

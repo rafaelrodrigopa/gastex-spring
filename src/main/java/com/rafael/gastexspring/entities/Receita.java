@@ -4,10 +4,19 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Receita implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String descricao;
 	private Double valor;
 	private Date data;
@@ -30,7 +39,7 @@ public class Receita implements Serializable{
 	}
 
 
-	public Receita(Integer id, String descricao, Double valor, Date data, Categoria categoria, Usuario usuario) {
+	public Receita(Long id, String descricao, Double valor, Date data, Categoria categoria, Usuario usuario) {
 		this.id = id;
 		this.descricao = descricao;
 		this.valor = valor;
@@ -41,12 +50,12 @@ public class Receita implements Serializable{
 	}
 
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

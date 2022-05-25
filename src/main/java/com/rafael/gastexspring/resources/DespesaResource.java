@@ -18,7 +18,7 @@ public class DespesaResource {
 	@GetMapping
 	public ResponseEntity<Despesa> findAll(){
 		
-		Despesa d = new Despesa(1, "Arroz", 18.00, new Date(), new Categoria(1, "Alimentos"), new Usuario(1, "Rafael", "rafael@gmail.com"));
+		Despesa d = new Despesa(1L, "Arroz", 18.00, new Date(), new Categoria(1L, "Alimentos"), new Usuario(1L, "Rafael", "rafael@gmail.com"));
 		return ResponseEntity.ok().body(d);
 		
 	}

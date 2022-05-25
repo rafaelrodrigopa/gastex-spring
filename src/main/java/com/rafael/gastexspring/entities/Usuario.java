@@ -3,10 +3,18 @@ package com.rafael.gastexspring.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Usuario implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String nome;
 	private String profissao;
 	
@@ -15,19 +23,19 @@ public class Usuario implements Serializable{
 	}
 
 
-	public Usuario(int id, String nome, String profissao) {
+	public Usuario(Long id, String nome, String profissao) {
 		this.id = id;
 		this.nome = nome;
 		this.profissao = profissao;
 	}
 
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

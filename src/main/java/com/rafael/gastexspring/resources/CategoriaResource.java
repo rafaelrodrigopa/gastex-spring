@@ -14,7 +14,7 @@ public class CategoriaResource {
 	@GetMapping
 	public ResponseEntity<Categoria> findAll(){
 		
-		Categoria c = new Categoria(1, "Alimentos");
+		Categoria c = new Categoria(1L, "Alimentos");
 		return ResponseEntity.ok().body(c);
 		
 	}
