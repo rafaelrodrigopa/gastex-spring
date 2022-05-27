@@ -1,7 +1,7 @@
 package com.rafael.gastexspring.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -10,6 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonValueFormat;
 
 @Entity
 public class Receita implements Serializable{
@@ -21,12 +26,15 @@ public class Receita implements Serializable{
 	private Long id;
 	private String descricao;
 	private Double valor;
-	private Date data;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+	private Instant data;
 	
 	@ManyToOne
 	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
@@ -36,13 +44,14 @@ public class Receita implements Serializable{
 	}
 
 
-	public Receita(Long id, String descricao, Double valor, Date data, Categoria categoria) {
+	public Receita(Long id, String descricao, Double valor, Instant data, Categoria categoria, Usuario usuario) {
 		this.id = id;
 		this.descricao = descricao;
 		this.valor = valor;
 		this.data = data;
 		
 		this.categoria=categoria;
+		this.usuario=usuario;
 	}
 
 
@@ -76,12 +85,12 @@ public class Receita implements Serializable{
 	}
 
 
-	public Date getData() {
+	public Instant getData() {
 		return data;
 	}
 
 
-	public void setData(Date data) {
+	public void setData(Instant data) {
 		this.data = data;
 	}
 
