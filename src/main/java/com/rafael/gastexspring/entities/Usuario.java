@@ -21,7 +21,10 @@ public class Usuario implements Serializable{
 	private String nome;
 	private String profissao;
 	
-	
+	private Double saldo = 0.0;
+	private Double debito = 0.0;
+
+
 	@OneToMany(mappedBy = "usuario")
 	private List<Receita> receitas = new ArrayList<>();
 	
@@ -29,7 +32,8 @@ public class Usuario implements Serializable{
 	private List<Despesa> despesas = new ArrayList<>();
 	
 	public Usuario() {
-		// TODO Auto-generated constructor stub
+		//Inicializa o valor total da conta do usuário
+		getValorConta();
 	}
 
 
@@ -37,6 +41,9 @@ public class Usuario implements Serializable{
 		this.id = id;
 		this.nome = nome;
 		this.profissao = profissao;
+		
+		//Inicializa o valor total da conta do usuário
+		getValorConta();
 	}
 
 
@@ -82,7 +89,36 @@ public class Usuario implements Serializable{
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+	
+	// Retorna o valor total de todas as receitas
+	public Double getSaldo() {
+		
+		double total_rec = 0.0;
+		
+		for(Receita rec : receitas) {
+			total_rec += rec.getValor();
+		}
+		
+		return total_rec;
+	}
 
+
+	// Retorna o valor total de todas os débitos
+	public Double getDebito() {
+		
+		double total_deb = 0.0;
+		
+		for(Despesa des : despesas) {
+			total_deb += des.getValor();
+		}
+		
+		return total_deb;
+	}
+
+	public Double getValorConta() {
+		return getSaldo() - getDebito();
+	}
+	
 
 	@Override
 	public boolean equals(Object obj) {

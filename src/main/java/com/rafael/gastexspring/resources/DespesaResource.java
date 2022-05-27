@@ -1,25 +1,28 @@
 package com.rafael.gastexspring.resources;
 
-import java.time.Instant;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rafael.gastexspring.entities.Categoria;
 import com.rafael.gastexspring.entities.Despesa;
-import com.rafael.gastexspring.entities.Usuario;
+import com.rafael.gastexspring.services.DespesaService;
 
 @RestController
 @RequestMapping(value = "/Despesas")
 public class DespesaResource {
 
+	@Autowired
+	private DespesaService despesaService;
+	
 	@GetMapping
-	public ResponseEntity<Despesa> findAll(){
+	public ResponseEntity<List<Despesa>> findAll(){
 		
-		Despesa d = new Despesa(1L, "Arroz", 18.00, Instant.parse("2022-05-13T19:53:07Z"), new Categoria(1L, "Alimentos"), new Usuario(1L,"Rafael","rafael@gmail.com"));
-		return ResponseEntity.ok().body(d);
+		List<Despesa> list = despesaService.findAll();
+		return ResponseEntity.ok().body(list);
 		
 	}
 }
