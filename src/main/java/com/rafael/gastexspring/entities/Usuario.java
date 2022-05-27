@@ -1,12 +1,15 @@
 package com.rafael.gastexspring.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Usuario implements Serializable{
@@ -17,6 +20,12 @@ public class Usuario implements Serializable{
 	private Long id;
 	private String nome;
 	private String profissao;
+	
+	@OneToMany(mappedBy = "usuario")
+	private List<Receita> receitas = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "usuario")
+	private List<Despesa> despesas = new ArrayList<>();
 	
 	public Usuario() {
 		// TODO Auto-generated constructor stub
@@ -59,6 +68,14 @@ public class Usuario implements Serializable{
 		this.profissao = profissao;
 	}
 
+	public List<Receita> getReceitas() {
+		return receitas;
+	}
+
+
+	public List<Despesa> getDespesas() {
+		return despesas;
+	}
 
 	@Override
 	public int hashCode() {

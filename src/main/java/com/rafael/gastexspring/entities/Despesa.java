@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Despesa implements Serializable{
@@ -20,28 +22,24 @@ public class Despesa implements Serializable{
 	private Double valor;
 	private Date data;
 	
+	@ManyToOne
+	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
-	private Usuario usuario;
 	
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
+	@ManyToOne
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
 
 	public Despesa() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Despesa(Long id, String descricao, Double valor, Date data, Categoria categoria, Usuario usuario) {
+	public Despesa(Long id, String descricao, Double valor, Date data, Categoria categoria) {
 		this.id = id;
 		this.descricao = descricao;
 		this.valor = valor;
 		this.data = data;
 		this.setCategoria(categoria);
-		this.usuario=usuario;
 	}
 
 	public Long getId() {
@@ -95,7 +93,7 @@ public class Despesa implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Despesa [id=" + id + ", descricao=" + descricao + ", valor=" + valor + ", data=" + data + ", Categoria=" + categoria + ", Usuario=" + usuario + "]";
+		return "Despesa [id=" + id + ", descricao=" + descricao + ", valor=" + valor + ", data=" + data + ", Categoria=" + categoria + "]";
 	}
 
 	public Categoria getCategoria() {

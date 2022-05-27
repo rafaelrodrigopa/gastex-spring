@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rafael.gastexspring.entities.Categoria;
 import com.rafael.gastexspring.entities.Receita;
-import com.rafael.gastexspring.entities.Usuario;
 
 @RestController
 @RequestMapping(value = "/Receitas")
@@ -18,7 +17,7 @@ public class ReceitaResource {
 	@GetMapping
 	public ResponseEntity<Receita> findAll(){
 		
-		Receita r = new Receita(1L, "Vale", 900.00, new Date(), new Categoria(1L, "Pagamentos"), new Usuario(1L, "Rafael", "rafael@gmail.com"));
+		Receita r = new Receita(1L, "Vale", 900.00, new Date(), new Categoria(1L, "Pagamentos"));
 		return ResponseEntity.ok().body(r);
 	}
 
