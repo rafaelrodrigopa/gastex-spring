@@ -32,7 +32,6 @@ public class Receita implements Serializable{
 	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
@@ -96,6 +95,15 @@ public class Receita implements Serializable{
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 

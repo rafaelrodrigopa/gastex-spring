@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Usuario implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -24,7 +26,7 @@ public class Usuario implements Serializable{
 	private Double saldo = 0.0;
 	private Double debito = 0.0;
 
-
+	@JsonIgnore
 	@OneToMany(mappedBy = "usuario")
 	private List<Receita> receitas = new ArrayList<>();
 	
@@ -85,6 +87,8 @@ public class Usuario implements Serializable{
 		return despesas;
 	}
 
+	
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

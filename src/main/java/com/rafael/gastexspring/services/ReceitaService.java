@@ -24,4 +24,8 @@ public class ReceitaService {
 		return obj.get();
 	}
 	
+	public Receita insert(Receita obj) {
+		return repository.save(obj);
+	}
+	
 }

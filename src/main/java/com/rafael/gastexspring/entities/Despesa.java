@@ -87,6 +87,14 @@ public class Despesa implements Serializable{
 		return Objects.hash(id);
 	}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
