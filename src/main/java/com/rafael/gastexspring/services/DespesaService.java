@@ -24,4 +24,8 @@ public class DespesaService {
 		return obj.get();
 	}
 	
+	public Despesa insert(Despesa obj) {
+		return repository.save(obj);
+	}
+	
 }
