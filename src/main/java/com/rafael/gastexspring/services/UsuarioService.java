@@ -33,6 +33,7 @@ public class UsuarioService {
 	}
 	
 	public Usuario update(Long id, Usuario obj) {
+		@SuppressWarnings("deprecation")
 		Usuario entity = repository.getOne(id);
 		updateData(entity, obj);
 		return repository.save(entity);

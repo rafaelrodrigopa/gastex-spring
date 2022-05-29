@@ -32,4 +32,19 @@ public class ReceitaService {
 		repository.deleteById(id);
 	}
 	
+	public Receita update(Long id, Receita obj) {
+		@SuppressWarnings("deprecation")
+		Receita entity = repository.getOne(id);
+		updateData(entity, obj);
+		return repository.save(entity);
+	}
+
+	private void updateData(Receita entity, Receita obj) {
+		
+		entity.setData(obj.getData());
+		entity.setDescricao(obj.getDescricao());
+		entity.setValor(obj.getValor());
+		entity.setCategoria(obj.getCategoria());
+		entity.setUsuario(obj.getUsuario());
+	}
 }
