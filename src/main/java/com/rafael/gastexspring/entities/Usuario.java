@@ -32,8 +32,6 @@ public class Usuario implements Serializable{
 	private List<Despesa> despesas = new ArrayList<>();
 	
 	public Usuario() {
-		//Inicializa o valor total da conta do usuário
-		getValorConta();
 	}
 
 
@@ -42,8 +40,6 @@ public class Usuario implements Serializable{
 		this.nome = nome;
 		this.profissao = profissao;
 		
-		//Inicializa o valor total da conta do usuário
-		getValorConta();
 	}
 
 
@@ -115,10 +111,6 @@ public class Usuario implements Serializable{
 		}
 		
 		return total_deb;
-	}
-
-	public Double getValorConta() {
-		return getSaldo() - getDebito();
 	}
 	
 
