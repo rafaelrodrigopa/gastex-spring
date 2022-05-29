@@ -22,9 +22,6 @@ public class Usuario implements Serializable{
 	private Long id;
 	private String nome;
 	private String profissao;
-	
-	private Double saldo = 0.0;
-	private Double debito = 0.0;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "usuario")
