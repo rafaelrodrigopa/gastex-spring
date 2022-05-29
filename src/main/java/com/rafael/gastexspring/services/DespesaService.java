@@ -32,4 +32,19 @@ public class DespesaService {
 		repository.deleteById(id);
 	}
 	
+	public Despesa update(Long id, Despesa obj) {
+		@SuppressWarnings("deprecation")
+		Despesa entity = repository.getOne(id);
+		updateData(entity, obj);
+		return repository.save(entity);
+	}
+
+	private void updateData(Despesa entity, Despesa obj) {
+		
+		entity.setData(obj.getData());
+		entity.setDescricao(obj.getDescricao());
+		entity.setValor(obj.getValor());
+		entity.setCategoria(obj.getCategoria());
+		entity.setUsuario(obj.getUsuario());
+	}
 }
